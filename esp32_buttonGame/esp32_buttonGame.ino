@@ -1,46 +1,25 @@
 int const numberOfButtons = 5;
 const int buttonPins[] = {32, 33, 34, 35, 36};
-const int But1 = 32;
-const int But2 = 33;
-const int But3 = 34;
-const int But4 = 35;
-const int But5 = 36;
-const int SB = 39;
+const int SB = 39; // Start Button Pin
 const int ledPins[] = {14, 15, 16, 17, 18};
-const int led1 = 14;
-const int led2 = 15;
-const int led3 = 16;
-const int led4 = 17;
-const int led5 = 18;
-const int Sled = 19;
+const int Sled = 19; // Start LED pin
 
-// variables will change:
-//int B1State = 0;
-//int B2State = 0;
-//int B3State = 0;
-//int B4State = 0;
-//int B5State = 0;
 int SBState = 0;
 int buttonStates[] = {0,0,0,0,0,0};
 int buttonsPushed = 0;
 
 void setup() {
-  // initialize the LED pin as an output:
-  pinMode(led1, OUTPUT);
-  pinMode(led2, OUTPUT);
-  pinMode(led3, OUTPUT);
-  pinMode(led4, OUTPUT);
-  pinMode(led5, OUTPUT);
-  pinMode(Sled, OUTPUT);
-  // initialize the pushbutton pin as an input:
-  pinMode(But1, INPUT);
-  pinMode(But2, INPUT);
-  pinMode(But3, INPUT);
-  pinMode(But4, INPUT);
-  pinMode(But5, INPUT);
+  // initialize the LED pins for output:
+  for (int pin = 0; pin < numberOfButtons; pin++) {
+    pinMode(ledPins[pin], OUTPUT);
+  }
+  // initialize the pushbutton pins for input:
+  for (int pin = 0; pin < numberOfButtons; pin++) {
+    pinMode(buttonPins[pin], INPUT);
+  }
   pinMode(SB, INPUT);
-  Serial.begin(9600);
-  Serial.println("Printing diagnostics....");
+  Serial.begin(115200);
+  Serial.println("Ready to start...");
 }
 
 void resetLeds() {
@@ -94,26 +73,12 @@ void loop() {
   }
 
   digitalWrite(Sled, LOW);
-  buttonStates[0] = digitalRead(But1);
-  buttonStates[1] = digitalRead(But2);
-  buttonStates[2] = digitalRead(But3);
-  buttonStates[3] = digitalRead(But4);
-  buttonStates[4] = digitalRead(But5);
-  for (int buttonNumber = 0; buttonNumber <5; buttonNumber++){
-    Serial.print(buttonStates[buttonNumber]);
+  for (int button = 0; button < numberOfButtons; button++){
+    Serial.print(buttonStates[button]);
     Serial.print(", ");
   }
-  // check if the pushbutton is pressed. If it is, the buttonState is HIGH:
-//  if (buttonState == LOW) {
-//    // turn LED Off:
-//    // Serial.println("Button LOW, led LOW");
-//    digitalWrite(ledPin, LOW);
-//  } else {
-//    // turn LED on:
-//    // Serial.println("Button HIGH, led HIGH");
-//    digitalWrite(ledPin, HIGH);
-//  }
-  Serial.println("Waiting to start...");
+
+  Serial.println("Waiting to start round...");
   Serial.println("------");
   
   delay(3000);

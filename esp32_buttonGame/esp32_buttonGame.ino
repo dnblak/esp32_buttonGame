@@ -9,16 +9,37 @@ int buttonStates[] = {0,0,0,0,0,0};
 int buttonsPushed = 0;
 
 void setup() {
-  // initialize the LED pins for output:
+  Serial.begin(115200);
+  Serial.println("Set each LED pin as output...");
   for (int pin = 0; pin < numberOfButtons; pin++) {
     pinMode(ledPins[pin], OUTPUT);
+    Serial.print(pin);
+    Serial.println(" pin is set for output");
   }
-  // initialize the pushbutton pins for input:
+  pinMode(Sled, OUTPUT);
+  Serial.println("Start LED is set for output.");
+  Serial.println("Set each button pin as input...");
   for (int pin = 0; pin < numberOfButtons; pin++) {
     pinMode(buttonPins[pin], INPUT);
+    Serial.print(pin);
+    Serial.println(" pin is set for input");
   }
   pinMode(SB, INPUT);
-  Serial.begin(115200);
+  Serial.println("Start button is set for input");
+  Serial.println("Flashing all leds...");
+  int loopCount = 0;
+  while (loopCount < numberOfButtons) {
+    for (int pin = 0; pin < numberOfButtons; pin++) {
+      digitalWrite(ledPins[pin], HIGH);
+      delay(100);
+      digitalWrite(ledPins[pin], LOW);
+    }
+    digitalWrite(Sled, HIGH);
+    delay(100);
+    digitalWrite(Sled, LOW);
+    loopCount++;
+  }
+
   Serial.println("Ready to start...");
 }
 
@@ -48,7 +69,7 @@ void fastButton(int buttonNumber[]) {
 
 void startGame() {
   while (SBState == HIGH) {
-    Serial.println("HIGH");
+    Serial.println("Waiting for button press...");
     digitalWrite(Sled, HIGH);
     for (int pin = 0; pin < numberOfButtons; pin++) {
       buttonStates[pin] = digitalRead(buttonPins[pin]);
@@ -81,5 +102,5 @@ void loop() {
   Serial.println("Waiting to start round...");
   Serial.println("------");
   
-  delay(3000);
+  delay(1000);
 }

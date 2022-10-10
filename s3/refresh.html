@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auto-refresh DIV element using JavaScript and Ajax</title>
+    
+    <style>
+    	* {font: 18px Calibri;}
+		
+        div, h3 {
+    		width: 100%;
+        	padding: 10px 0;
+        	border: solid 1px #eee;
+        	text-align: center;
+	    }
+        
+    	h3 {border: none;}
+    </style>
+</head>
+
+<body>
+    <h3>
+        Let's see who clicked!
+    </h3>
+    
+    <div id='active'></div>
+    <div id='button1'></div>
+    <div id='button2'></div>
+    <div id='button3'></div>
+    <div id='button4'></div>
+    <div id='button5'></div>
+
+</body>
+
+<script>
+    let i = 0;      // Its a just a counter.
+    
+    let getData = () => {
+        const oXHR = new XMLHttpRequest();
+
+        // Initiate request.
+        oXHR.onreadystatechange = reportStatus;
+        oXHR.open("GET", "data.json", true);
+        oXHR.setRequestHeader("Content-Type", "application/json");
+        oXHR.send(); 
+
+        function reportStatus() {
+            // Check if request is complete.
+            if (oXHR.readyState === XMLHttpRequest.DONE && 
+                oXHR.status === 200) 
+            { 
+                
+                let data =  JSON.parse(this.responseText);
+                
+                // Refresh DIV with new content.
+                document.getElementById('active').innerHTML = 
+                    'Button: ' + data[i].Company + ' <br />' + 
+                    'Current Price: ' + data[i].Current_Price + '<br />' +
+                    'Change: ' + data[i].Change;
+                    
+                i = i + 1;
+                if (i == 6) 
+                    i = 0;
+            }
+        }
+    }
+
+    getData();
+    
+    var counter = 1;
+
+    // The countdown method.
+    window.setInterval(function () {
+        counter--;
+        if (counter >= 0) {
+            var span;
+            span = document.getElementById("cnt");
+            span.innerHTML = counter;
+        }
+        if (counter === 0) {
+            counter = 1;
+        }
+
+    }, 10000);
+
+    let reload = window.setInterval('getData()', 10000);
+
+</script>
+</html>

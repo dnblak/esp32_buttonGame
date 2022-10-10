@@ -1,0 +1,47 @@
+{
+  "version": "2.0",
+  "routeKey": "ANY /datadump",
+  "rawPath": "/datadump",
+  "rawQueryString": "",
+  "headers": {
+    "accept-encoding": "identity;q=1,chunked;q=0.1,*;q=0",
+    "connection": "keep-alive",
+    "content-length": "587",
+    "content-type": "application/json",
+    "host": "api.dft.fyi",
+    "user-agent": "ESP32HTTPClient",
+    "x-forwarded-for": "71.191.155.180"
+  },
+  "requestContext": {
+    "accountId": "105847536785",
+    "apiId": "1ddkm1rmxd",
+    "authentication": {
+      "clientCert": {
+        "clientCertPem": "-----BEGIN CERTIFICATE-----\nMIIElTCCAn0CAQEwDQYJKoZIhvcNAQELBQAwgYoxCzAJBgNVBAYTAlVTMREwDwYD\nVQQIDAhWaXJnaW5pYTERMA8GA1UEBwwITWFuYXNzYXMxEDAOBgNVBAoMB2RmeS5m\neWkxCzAJBgNVBAsMAklUMRQwEgYDVQQDDAthcGkuZGZ0LmZ5aTEgMB4GCSqGSIb3\nDQEJARYRZGJsYWtlQGFtYXpvbi5jb20wHhcNMjExMTEyMDEwNDQxWhcNMzExMTEw\nMDEwNDQxWjCBlTELMAkGA1UEBhMCVVMxETAPBgNVBAgMCFZpcmdpbmlhMREwDwYD\nVQQHDAhNYW5hc3NhczEQMA4GA1UECgwHZGZ0LmZ5aTELMAkGA1UECwwCSVQxFDAS\nBgNVBAMMC2FwaS5kZnQuZnlpMSswKQYJKoZIhvcNAQkBFhxkYmxha2VAdGhlLWZy\nb3plbi10dW5kcmEuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA\nyOGt3Ygp/QZtsxayW41KQ9t66P7ggrzxTI85VnqydIHSKhGsl4gRCj7XzGhaZJRx\ndeUXYxznrs/uOcsd8Mh/MJE2JSo7uhVTFA/NhEgj8rZA1YLU4H4+/hPGPSoKI7KL\nD0MpYFPRgVblUxT8GGoEljvlN84UKa/scTRqCUE/DIc4FjaYmRTVNWPa0rSpJTbv\nkCtl09mtfZ0B1RIlx5o1edRTG19LzzQzJJTHCL2hVtrYTmaMKPpSNF3de+HeBQF9\nW007FJfy+u9BKnIcNJYm2E/54HLb7VbWN0Uv8t55WYhLxb46IFdehrpuwxz7/ZoB\nFlF761AclUA8Y6qksUrQMwIDAQABMA0GCSqGSIb3DQEBCwUAA4ICAQB2g2/qTQG0\nfBPJQlpZ//4tC2XC7tWgUxhBuGvPxMVq6YzacR43FwPYG+XQc4XjVZSQ1axTh6e1\nOB+iTSaCkXfK49/PDKDOzvPM+J3gICQE0O28uXGe8IEalxuBMs6vX2ZrBLs/1ueM\nnjlLHItGzyGlY73DnAS/mPL0yhjLYAT2C7zFR2S0bx4b8UDz+pSuUoNyCpoll/cC\nzMz34oL9NjNXRg8EnXhukQ6yREl8glhA1QzIsNurgR6W/7HDO4cKmWM5BaOxnY+8\nwr3DjFcbdnJegL41KCnxQIKGt5G/rtmtZ2lomeKbhuIomlJHZysBKWJTOYyKl4Fg\nCNbnJ24c1b+4949vmz0r7rFAT3ba9tx3jJV5LbAujWZUAHuFHiwF+97It3kQ/+a2\nw4sl7OLnt/mKZ0448QBFYgmS0OhpSTvTzvS8Yt9Yu99aif0ULp2kLrGMt6XS2JbU\nejzDRvjyeDV/Ya2qRS4wK3PpSdWyeWQ6lIOtOaeaLxSR6qVyoToLNLP3AFuNdzuP\n0GLdkX0C6aNyQpAK1HpQU4DWKm68xzkv1mtYbb3JHuwrsis6fnM3ww0d7PuTFogH\ngHJAy9OOXbEhyQ4boXcBj949kgaNQr/bPR4khG7wgSlVShX1IQMjzP4IeqvVQSVH\nwhe4ue8Rc6LdsomOCDeQ9LCCdXqnZQiPqA==\n-----END CERTIFICATE-----\n",
+        "issuerDN": "C=US,ST=Virginia,L=Manassas,O=dfy.fyi,OU=IT,CN=api.dft.fyi,emailAddress=dblake@amazon.com",
+        "serialNumber": "1",
+        "subjectDN": "C=US,ST=Virginia,L=Manassas,O=dft.fyi,OU=IT,CN=api.dft.fyi,emailAddress=dblake@the-frozen-tundra.com",
+        "validity": {
+          "notAfter": "Nov 10 01:04:41 2031 GMT",
+          "notBefore": "Nov 12 01:04:41 2021 GMT"
+        }
+      }
+    },
+    "domainName": "api.dft.fyi",
+    "domainPrefix": "api",
+    "http": {
+      "method": "POST",
+      "path": "/datadump",
+      "protocol": "HTTP/1.1",
+      "sourceIp": "10.1.9.78:59186",
+      "userAgent": "ESP32HTTPClient"
+    },
+    "requestId": "Jd3P3h17oAMEJIA=",
+    "routeKey": "ANY /datadump",
+    "stage": "$default",
+    "time": "27/Nov/2021:13:55:23 +0000",
+    "timeEpoch": 1638021323755
+  },
+  "body": "[{\"active\": 0},{\"Button\": 1,\"Winner\": 0},{\"Button\": 2,\"Winner\": 1},{\"Button\": 3,\"Winner\": 0},{\"Button\": 4,\"Winner\": 0},{\"Button\": 5,\"Winner\": 0}]",
+  "isBase64Encoded": false
+}

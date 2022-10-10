@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Auto-refresh DIV element using JavaScript and Ajax</title>
+    <title>Which button was pushed?!?!</title>
     
     <style>
     	* {font: 18px Calibri;}
-		
         div, h3 {
     		width: 100%;
         	padding: 10px 0;
         	border: solid 1px #eee;
         	text-align: center;
 	    }
-        
     	h3 {border: none;}
     </style>
 </head>
 
 <body>
     <h3>
-        Let's see who clicked!
+        Who is the winner?!?!?!
     </h3>
-    
+    https://storyline.dnblak.people.aws.dev/buttonGame/refresh.html
     <div id='active'></div>
     <div id='button1'></div>
     <div id='button2'></div>
     <div id='button3'></div>
     <div id='button4'></div>
     <div id='button5'></div>
+    <span id="cnt" style="color:red;">2</span> 
 
 </body>
 
@@ -39,7 +38,7 @@
 
         // Initiate request.
         oXHR.onreadystatechange = reportStatus;
-        oXHR.open("GET", "data.json", true);
+        oXHR.open("GET", "data.json?"+(Math.random()*1000000), true);
         oXHR.setRequestHeader("Content-Type", "application/json");
         oXHR.send(); 
 
@@ -48,18 +47,57 @@
             if (oXHR.readyState === XMLHttpRequest.DONE && 
                 oXHR.status === 200) 
             { 
-                
                 let data =  JSON.parse(this.responseText);
-                
                 // Refresh DIV with new content.
-                document.getElementById('active').innerHTML = 
-                    'Button: ' + data[i].Company + ' <br />' + 
-                    'Current Price: ' + data[i].Current_Price + '<br />' +
-                    'Change: ' + data[i].Change;
-                    
-                i = i + 1;
-                if (i == 6) 
-                    i = 0;
+                if (data[0].active == 0 && (data[1].Winner+data[2].Winner+data[3].Winner+data[4].Winner+data[5].Winner == 0)) {
+                  document.getElementById('active').innerHTML = 'Waiting for game to start!'
+                  document.getElementById('button1').innerHTML = ''
+                  document.getElementById('button2').innerHTML = ''
+                  document.getElementById('button3').innerHTML = ''
+                  document.getElementById('button4').innerHTML = ''
+                  document.getElementById('button5').innerHTML = ''
+                } else if (data[0].active == 1 && (data[1].Winner+data[2].Winner+data[3].Winner+data[4].Winner+data[5].Winner == 0)) {
+                  document.getElementById('active').innerHTML = 'Game is active!'
+                } else {
+                  document.getElementById('active').innerHTML = 'Game has been won!'
+                }
+                if (data[0].active == 1 && (data[1].Winner+data[2].Winner+data[3].Winner+data[4].Winner+data[5].Winner == 0)) {
+                  document.getElementById('button1').innerHTML = 'Button 1 is waiting!'
+                  document.getElementById('button2').innerHTML = 'Button 2 is waiting!'
+                  document.getElementById('button3').innerHTML = 'Button 3 is waiting!'
+                  document.getElementById('button4').innerHTML = 'Button 4 is waiting!'
+                  document.getElementById('button5').innerHTML = 'Button 5 is waiting!'
+                }
+                if (data[1].Winner == 1) {
+                  document.getElementById('button1').innerHTML = 'Button 1 is the winner!'
+                } 
+                if ((data[1].Winner != 1) && (data[1].Winner+data[2].Winner+data[3].Winner+data[4].Winner+data[5].Winner == 1)) {
+                  document.getElementById('button1').innerHTML = 'Button 1 was not fast enough!'
+                }
+                if (data[2].Winner == 1) {
+                  document.getElementById('button2').innerHTML = 'Button 2 is the winner!'
+                } 
+                if ((data[2].Winner != 1) && (data[1].Winner+data[2].Winner+data[3].Winner+data[4].Winner+data[5].Winner == 1)) {
+                  document.getElementById('button2').innerHTML = 'Button 2 was not fast enough!'
+                }
+                if (data[3].Winner == 1) {
+                  document.getElementById('button3').innerHTML = 'Button 3 is the winner!'
+                }
+                if ((data[3].Winner != 1) && (data[1].Winner+data[2].Winner+data[3].Winner+data[4].Winner+data[5].Winner == 1)) {
+                  document.getElementById('button3').innerHTML = 'Button 3 was not fast enough!'
+                } 
+                if (data[4].Winner == 1) {
+                  document.getElementById('button4').innerHTML = 'Button 4 is the winner!'
+                }
+                if ((data[4].Winner != 1) && (data[1].Winner+data[2].Winner+data[3].Winner+data[4].Winner+data[5].Winner == 1)) {
+                  document.getElementById('button4').innerHTML = 'Button 4 was not fast enough!'
+                } 
+                if (data[5].Winner == 1) {
+                  document.getElementById('button5').innerHTML = 'Button 5 is the winner!'
+                }
+                if ((data[5].Winner != 1) && (data[1].Winner+data[2].Winner+data[3].Winner+data[4].Winner+data[5].Winner == 1)) {
+                  document.getElementById('button5').innerHTML = 'Button 5 was not fast enough!'
+                } 
             }
         }
     }
@@ -77,12 +115,12 @@
             span.innerHTML = counter;
         }
         if (counter === 0) {
-            counter = 1;
+            counter = 6;
         }
 
-    }, 10000);
+    }, 500);
 
-    let reload = window.setInterval('getData()', 10000);
+    let reload = window.setInterval('getData()', 3000);
 
 </script>
 </html>
